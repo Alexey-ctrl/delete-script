@@ -10,7 +10,7 @@ const api = {
   delete: '/entity/by-identifier/'
 };
 
-const deleteQueue = new Queue(REQUESTS_LIMIT, async(entity, next) => {
+const deleteQueue = new Queue(REQUESTS_LIMIT, async (entity, next) => {
   await deleteEntity(entity);
   next();
 });
@@ -27,11 +27,11 @@ const deleteQueue = new Queue(REQUESTS_LIMIT, async(entity, next) => {
 })();
 
 async function deleteEntity(entity) {
-    try {
-      await request(api.delete + entity.id, 'DELETE');
-    } catch (e) {
-      console.error(e);
-    }
+  try {
+    await request(api.delete + entity.id, 'DELETE');
+  } catch (e) {
+    console.error(e);
+  }
 }
 
 async function request(path, method) {
